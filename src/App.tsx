@@ -1,12 +1,9 @@
-import fisheyeLogo from "/images/logo.png";
+import Header from "./components/Header";
 
 const App = () => {
   return (
     <>
-      <header>
-        <img src={fisheyeLogo} className="logo" alt="fisheye logo" />
-        <h1>Nos photographes</h1>
-      </header>
+      <Header />
       <main id="main">
         <div className="photographer_section"></div>
       </main>
