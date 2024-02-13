@@ -1,8 +1,22 @@
 @import url("photographer.css");
 
+/* RESET CSS */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* GENERAL */
+
 body {
   font-family: "DM Sans", sans-serif;
-  margin: 0;
 }
 
 header {
