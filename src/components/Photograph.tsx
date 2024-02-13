@@ -6,7 +6,7 @@ const Photographer = () => {
       <main id="main">
         <div className="photograph-header">
           <button className="contact_button" onClick={displayModal}>
-            Contactez-moi
+            Contactez moi
           </button>
         </div>
       </main>
