@@ -5,15 +5,13 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "../src/css/index.css";
 import Photographer from "./routes/Photographer.tsx";
 
-export const homePath = "/Front-End-Fisheye"; // This is the base path according to Vite Config ("/")
-
 const router = createBrowserRouter([
   {
-    path: `${homePath}/`,
+    path: "/",
     element: <App />,
   },
   {
-    path: `${homePath}/:photographerId`,
+    path: "/:id",
     element: <Photographer />,
   },
 ]);

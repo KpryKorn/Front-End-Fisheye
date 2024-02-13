@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import Header from "./components/Header";
-import { homePath } from "./main";
 
 const App = () => {
   return (
@@ -8,7 +7,7 @@ const App = () => {
       <Header />
       <main id="main">
         <div className="photographer_section">
-          <Link to={`${homePath}/2`}></Link>
+          <Link to={"/2"}>Salut</Link>
         </div>
       </main>
     </>
