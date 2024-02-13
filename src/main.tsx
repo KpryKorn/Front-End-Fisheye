@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "../src/css/index.css";
-import Photographer from "./components/Photographer.tsx";
+import Photographer from "./routes/Photographer.tsx";
 
 const homePath = "/Front-End-Fisheye"; // This is the base path according to Vite Config ("/")
 
