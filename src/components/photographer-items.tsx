@@ -27,3 +27,15 @@ export const Thumbnail = ({ photographer }: PhotographerProps) => {
     </article>
   );
 };
+
+export const ProfileText = ({ photographer }: PhotographerProps) => {
+  return (
+    <div>
+      <h1>{photographer.name}</h1>
+      <p className="profile-city">
+        {photographer.city}, {photographer.country}
+      </p>
+      <p className="profile-tagline">{photographer.tagline}</p>
+    </div>
+  );
+}
