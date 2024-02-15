@@ -3,6 +3,7 @@ import { displayModal, closeModal } from "../lib/utils";
 import data from "../data/photographers.json";
 import fisheyeLogo from "/images/logo.png";
 import { ProfileText } from "../components/photographer-items";
+import { PrimaryBtn } from "../components/buttons";
 
 const Photographer = () => {
   const URLId = window.location.pathname.split("/")[1];
@@ -22,9 +23,7 @@ const Photographer = () => {
       <main id="main">
         <div className="photograph-header">
           <ProfileText photographer={photographerId!} />
-          <button className="contact_button" onClick={displayModal}>
-            Contactez moi
-          </button>
+          <PrimaryBtn />
           <img
             src={`/images/Photographers_Id/${photographerId?.portrait}`}
             alt={photographerId?.name}
