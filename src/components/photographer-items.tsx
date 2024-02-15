@@ -16,7 +16,10 @@ export const Thumbnail = ({ photographer }: PhotographerProps) => {
   return (
     <article>
       <Link to={`${photographer.id}`}>
-        <img src={`/images/Photographers_Id/${photographer.portrait!}`} alt={photographer.name!} />
+        <img
+          src={`/images/Photographers_Id/${photographer.portrait!}`}
+          alt={photographer.name!}
+        />
         <h2>{photographer.name}</h2>
       </Link>
       <p className="thumbnail-city">
@@ -38,4 +41,4 @@ export const ProfileText = ({ photographer }: PhotographerProps) => {
       <p className="profile-tagline">{photographer.tagline}</p>
     </div>
   );
-}
+};

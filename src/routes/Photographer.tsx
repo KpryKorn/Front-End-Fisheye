@@ -5,7 +5,6 @@ import fisheyeLogo from "/images/logo.png";
 import { ProfileText } from "../components/photographer-items";
 
 const Photographer = () => {
-
   const URLId = window.location.pathname.split("/")[1];
 
   // comparer ID de l'URL avec ID du photographe à afficher dynamiquement
@@ -15,15 +14,21 @@ const Photographer = () => {
 
   return (
     <>
-    <header>
-      <Link to={"/"} title="Fisheye Home Page"><img src={fisheyeLogo} className="logo" alt="fisheye logo" /></Link>
-    </header>
+      <header>
+        <Link to={"/"} title="Fisheye Home Page">
+          <img src={fisheyeLogo} className="logo" alt="fisheye logo" />
+        </Link>
+      </header>
       <main id="main">
         <div className="photograph-header">
           <ProfileText photographer={photographerId!} />
           <button className="contact_button" onClick={displayModal}>
             Contactez moi
           </button>
+          <img
+            src={`/images/Photographers_Id/${photographerId?.portrait}`}
+            alt={photographerId?.name}
+          />
         </div>
       </main>
       <div id="contact_modal">
