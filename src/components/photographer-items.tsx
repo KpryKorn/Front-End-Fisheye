@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 interface PhotographerProps {
   photographer: {
     name: string | null;
@@ -13,8 +15,10 @@ interface PhotographerProps {
 export const Thumbnail = ({ photographer }: PhotographerProps) => {
   return (
     <article>
-      <img src={`/images/Photographers_Id/${photographer.portrait!}`} alt={photographer.name!} />
-      <h2>{photographer.name}</h2>
+      <Link to={`${photographer.id}`}>
+        <img src={`/images/Photographers_Id/${photographer.portrait!}`} alt={photographer.name!} />
+        <h2>{photographer.name}</h2>
+      </Link>
       <p className="thumbnail-city">
         {photographer.city}, {photographer.country}
       </p>

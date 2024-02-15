@@ -34,6 +34,10 @@ header {
   height: 90px;
 }
 
+a {
+  text-decoration: none;
+}
+
 h1 {
   color: #901c1c;
   margin-right: 100px;
@@ -41,6 +45,7 @@ h1 {
 
 .logo {
   height: 50px;
+  margin-top: 20px;
   margin-left: 100px;
 }
 
@@ -48,7 +53,7 @@ h1 {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 70px;
-  margin-top: 100px;
+  margin-block: 100px;
 }
 
 .photographer_section article {
@@ -57,6 +62,12 @@ h1 {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.photographer_section article a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .photographer_section article h2 {
