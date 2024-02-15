@@ -60,7 +60,7 @@ const Photographer = () => {
                   <img src={`/images/${media.image}`} alt={media.title} />
                   <div className="gallery-text">
                     <p>{media.title}</p>
-                    <p>{media.likes}</p>
+                    <p>{media.likes} ❤️</p>
                   </div>
                 </li>
               );
