@@ -9,9 +9,11 @@ const Photographer = () => {
   const URLId = window.location.pathname.split("/")[1];
 
   // comparer ID de l'URL avec ID du photographe à afficher dynamiquement
-  const photographerId = data.photographers.find(
+  const photographerToRender = data.photographers.find(
     (photographer) => photographer.id.toString() === URLId.toString()
   );
+
+  const medias = data.media;
 
   return (
     <>
@@ -22,11 +24,11 @@ const Photographer = () => {
       </header>
       <main id="main">
         <div className="photograph-header">
-          <ProfileText photographer={photographerId!} />
+          <ProfileText photographer={photographerToRender!} />
           <PrimaryBtn />
           <img
-            src={`/images/Photographers_Id/${photographerId?.portrait}`}
-            alt={photographerId?.name}
+            src={`/images/Photographers_Id/${photographerToRender?.portrait}`}
+            alt={photographerToRender?.name}
           />
         </div>
       </main>
@@ -50,6 +52,21 @@ const Photographer = () => {
           <p>Trier par</p>
           <Dropdown options={["Popularité", "Date", "Titre"]} />
         </div>
+        <ul className="gallery-container">
+          {medias.map((media) => {
+            if (media.photographerId === photographerToRender?.id) {
+              return (
+                <li key={media.id} className="gallery-item">
+                  <img src={`/images/${media.image}`} alt={media.title} />
+                  <div className="gallery-text">
+                    <p>{media.title}</p>
+                    <p>{media.likes}</p>
+                  </div>
+                </li>
+              );
+            }
+          })}
+        </ul>
       </section>
     </>
   );
