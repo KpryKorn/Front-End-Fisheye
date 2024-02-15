@@ -13,13 +13,13 @@ interface PhotographerProps {
 export const Thumbnail = ({ photographer }: PhotographerProps) => {
   return (
     <article>
-      <img src={photographer.portrait!} alt={photographer.name!} />
+      <img src={`/images/Photographers_Id/${photographer.portrait!}`} alt={photographer.name!} />
       <h2>{photographer.name}</h2>
-      <p>
+      <p className="thumbnail-city">
         {photographer.city}, {photographer.country}
       </p>
-      <p>{photographer.tagline}</p>
-      <p>{photographer.price}€/jour</p>
+      <p className="thumbnail-tagline">{photographer.tagline}</p>
+      <p className="thumbnail-price">{photographer.price}€/jour</p>
     </article>
   );
 };

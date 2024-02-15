@@ -65,6 +65,25 @@ h1 {
 }
 
 .photographer_section article img {
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50%;
   height: 200px;
   width: 200px;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+}
+
+.photographer_section article .thumbnail-city {
+  color: var(--primary-color);
+}
+
+.photographer_section article .thumbnail-tagline {
+  font-size: 13px;
+}
+
+.photographer_section article .thumbnail-price {
+  margin-top: 4px;
+  font-size: 13px;
+  color: #757575;
 }
