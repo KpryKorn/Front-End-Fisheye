@@ -75,7 +75,8 @@ h1 {
   font-size: 36px;
 }
 
-.photographer_section article img {
+.photographer_section article img,
+.photograph-header img {
   object-fit: cover;
   object-position: center;
   border-radius: 50%;
@@ -96,5 +97,24 @@ h1 {
 .photographer_section article .thumbnail-price {
   margin-top: 4px;
   font-size: 13px;
+  color: #757575;
+}
+
+/* profile component */
+
+.profile-name {
+  color: var(--secondary-color);
+  font-size: 64px;
+  margin-right: 0px;
+}
+
+.profile-city {
+  color: var(--primary-color);
+  font-size: 24px;
+}
+
+.profile-tagline {
+  font-size: 18px;
+  margin-top: 10px;
   color: #757575;
 }

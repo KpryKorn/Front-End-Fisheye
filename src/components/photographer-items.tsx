@@ -34,7 +34,7 @@ export const Thumbnail = ({ photographer }: PhotographerProps) => {
 export const ProfileText = ({ photographer }: PhotographerProps) => {
   return (
     <div>
-      <h1>{photographer.name}</h1>
+      <h1 className="profile-name">{photographer.name}</h1>
       <p className="profile-city">
         {photographer.city}, {photographer.country}
       </p>
