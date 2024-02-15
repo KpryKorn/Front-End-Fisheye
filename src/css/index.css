@@ -118,3 +118,35 @@ h1 {
   margin-top: 10px;
   color: #757575;
 }
+
+/* Dropdown component */
+
+.gallery {
+  margin-block: 20px;
+  margin-inline: 100px;
+}
+
+.dropdown-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.dropdown {
+  position: relative;
+  width: 200px;
+}
+
+.dropdown-header,
+.dropdown-options div {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.dropdown-options {
+  position: absolute;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  z-index: 1;
+}

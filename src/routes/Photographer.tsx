@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import { displayModal, closeModal } from "../lib/utils";
+import { closeModal } from "../lib/utils";
 import data from "../data/photographers.json";
 import fisheyeLogo from "/images/logo.png";
 import { ProfileText } from "../components/photographer-items";
-import { PrimaryBtn } from "../components/buttons";
+import { PrimaryBtn, Dropdown } from "../components/buttons";
 
 const Photographer = () => {
   const URLId = window.location.pathname.split("/")[1];
@@ -45,6 +45,12 @@ const Photographer = () => {
           </form>
         </div>
       </div>
+      <section className="gallery">
+        <div className="dropdown-container">
+          <p>Trier par</p>
+          <Dropdown options={["Popularité", "Date", "Titre"]} />
+        </div>
+      </section>
     </>
   );
 };
