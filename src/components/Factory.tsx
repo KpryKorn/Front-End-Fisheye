@@ -11,12 +11,35 @@ interface MediaProps {
   };
 }
 
+const playVideo = () => {
+  const video = document.querySelector("video");
+  video?.play();
+};
+
 const ImageComponent = ({ media }: MediaProps) => (
   <img src={`/images/${media.image}`} alt={media.title} />
 );
 
 const VideoComponent = ({ media }: MediaProps) => (
-  <video src={`/videos/${media.video}`} controls />
+  <div className="play-btn-container">
+    <video src={`/videos/${media.video}`} />
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className="play-btn"
+      onClick={playVideo}
+    >
+      <circle cx="12" cy="12" r="10" />
+      <polygon points="10 8 16 12 10 16 10 8" />
+    </svg>
+  </div>
 );
 
 const Factory = ({ media }: MediaProps) => {
