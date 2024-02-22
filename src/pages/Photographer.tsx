@@ -4,6 +4,7 @@ import data from "../data/photographers.json";
 import fisheyeLogo from "/images/logo.png";
 import { ProfileText } from "../components/photographer-items";
 import { PrimaryBtn, Dropdown } from "../components/buttons";
+import Factory from "../components/Factory";
 
 const Photographer = () => {
   const URLId = window.location.pathname.split("/")[1];
@@ -55,15 +56,7 @@ const Photographer = () => {
         <ul className="gallery-container">
           {medias.map((media) => {
             if (media.photographerId === photographerToRender?.id) {
-              return (
-                <li key={media.id} className="gallery-item">
-                  <img src={`/images/${media.image}`} alt={media.title} />
-                  <div className="gallery-text">
-                    <p>{media.title}</p>
-                    <p>{media.likes} ❤️</p>
-                  </div>
-                </li>
-              );
+              return <Factory key={media.id} media={media} />;
             }
           })}
         </ul>
