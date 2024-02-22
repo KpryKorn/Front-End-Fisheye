@@ -1,3 +1,5 @@
+import { playVideo } from "../lib/utils";
+
 interface MediaProps {
   media: {
     id: number;
@@ -10,11 +12,6 @@ interface MediaProps {
     price: number;
   };
 }
-
-const playVideo = () => {
-  const video = document.querySelector("video");
-  video?.play();
-};
 
 const ImageComponent = ({ media }: MediaProps) => (
   <img src={`/images/${media.image}`} alt={media.title} />
