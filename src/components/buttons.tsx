@@ -11,7 +11,7 @@ export const PrimaryBtn = () => {
 
 export const Dropdown = ({ options }: { options: string[] }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState<String>("Popularité");
+  const [selected, setSelected] = useState<string>("Popularité");
 
   return (
     <div className="dropdown">
