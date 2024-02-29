@@ -19,7 +19,7 @@ const ImageComponent = ({ media }: MediaProps) => (
 
 const VideoComponent = ({ media }: MediaProps) => (
   <div className="play-btn-container">
-    <video src={`/videos/${media.video}`} />
+    <video src={`/videos/${media.video}`} title={media.title} />
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
