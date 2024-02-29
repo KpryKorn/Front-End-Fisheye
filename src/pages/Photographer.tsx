@@ -2,7 +2,10 @@ import { Link } from "react-router-dom";
 import { closeModal } from "../lib/utils";
 import data from "../data/photographers.json";
 import fisheyeLogo from "/images/logo.png";
-import { ProfileText } from "../components/photographer-items";
+import {
+  ProfileText,
+  DisplayTotalLikes,
+} from "../components/photographer-items";
 import { PrimaryBtn, Dropdown } from "../components/buttons";
 import Factory from "../components/Factory";
 
@@ -33,6 +36,7 @@ const Photographer = () => {
           />
         </div>
       </main>
+      <DisplayTotalLikes photographer={photographerToRender!} medias={medias} />
       <div id="contact_modal">
         <div className="modal">
           <header>
