@@ -10,6 +10,16 @@ interface PhotographerProps {
     price: number | null;
     portrait: string | null;
   };
+  medias?: {
+    id: number;
+    photographerId: number;
+    title: string;
+    image?: string;
+    video?: string;
+    likes: number;
+    date: string;
+    price: number;
+  }[];
 }
 
 export const Thumbnail = ({ photographer }: PhotographerProps) => {
@@ -40,5 +50,26 @@ export const ProfileText = ({ photographer }: PhotographerProps) => {
       </p>
       <p className="profile-tagline">{photographer.tagline}</p>
     </div>
+  );
+};
+
+export const DisplayTotalLikes = ({
+  photographer,
+  medias,
+}: PhotographerProps) => {
+  const photographerMedias = medias?.filter(
+    (media) => media.photographerId === photographer.id
+  );
+
+  const totalLikes = photographerMedias?.reduce(
+    (acc: number, media) => acc + media.likes,
+    0
+  );
+
+  return (
+    <article className="total-likes-container">
+      <p>{totalLikes} ❤️</p>
+      <p>{`${photographer.price}€ /jour`}</p>
+    </article>
   );
 };
