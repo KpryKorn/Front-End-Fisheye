@@ -37,7 +37,11 @@ const Photographer = () => {
         <div className="modal">
           <header>
             <h2>Contactez-moi</h2>
-            <img src="/icons/close.svg" onClick={closeModal} />
+            <img
+              src="/icons/close.svg"
+              onClick={closeModal}
+              alt="Icone pour fermer la modale"
+            />
           </header>
           <form>
             <div>
@@ -54,11 +58,13 @@ const Photographer = () => {
           <Dropdown options={["Popularité", "Date", "Titre"]} />
         </div>
         <ul className="gallery-container">
-          {medias.map((media) => {
-            if (media.photographerId === photographerToRender?.id) {
-              return <Factory key={media.id} media={media} />;
-            }
-          })}
+          {medias
+            .sort((a, b) => b.likes - a.likes)
+            .map((media) => {
+              if (media.photographerId === photographerToRender?.id) {
+                return <Factory key={media.id} media={media} />;
+              }
+            })}
         </ul>
       </section>
     </>
