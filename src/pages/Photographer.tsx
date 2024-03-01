@@ -8,6 +8,7 @@ import {
 } from "../components/photographer-items";
 import { PrimaryBtn, Dropdown } from "../components/buttons";
 import Factory from "../components/Factory";
+import { useState } from "react";
 
 const Photographer = () => {
   const URLId = window.location.pathname.split("/")[1];
@@ -18,6 +19,9 @@ const Photographer = () => {
   );
 
   const medias = data.media;
+
+  const [likes, setLikes] = useState(0);
+  const incrementLikes = () => setLikes(likes + 1);
 
   return (
     <>
@@ -36,7 +40,11 @@ const Photographer = () => {
           />
         </div>
       </main>
-      <DisplayTotalLikes photographer={photographerToRender!} medias={medias} />
+      <DisplayTotalLikes
+        likes={likes}
+        photographer={photographerToRender!}
+        medias={medias}
+      />
       <div id="contact_modal">
         <div className="modal">
           <header>
@@ -66,7 +74,14 @@ const Photographer = () => {
             .sort((a, b) => b.likes - a.likes)
             .map((media) => {
               if (media.photographerId === photographerToRender?.id) {
-                return <Factory key={media.id} media={media} />;
+                return (
+                  <Factory
+                    likes={media.likes}
+                    incrementLikes={incrementLikes}
+                    key={media.id}
+                    media={media}
+                  />
+                );
               }
             })}
         </ul>

@@ -11,6 +11,8 @@ interface MediaProps {
     date: string;
     price: number;
   };
+  incrementLikes?: () => void;
+  likes?: number;
 }
 
 const ImageComponent = ({ media }: MediaProps) => (
@@ -39,15 +41,15 @@ const VideoComponent = ({ media }: MediaProps) => (
   </div>
 );
 
-const Factory = ({ media }: MediaProps) => {
+const Factory = ({ media, incrementLikes, likes }: MediaProps) => {
   if (media.image) {
     return (
       <li key={media.id} className="gallery-item">
         <ImageComponent media={media} />
         <div className="gallery-text">
           <p>{media.title}</p>
-          <p className="likes">
-            {media.likes}{" "}
+          <p className="likes" onClick={incrementLikes}>
+            {likes}{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -69,8 +71,8 @@ const Factory = ({ media }: MediaProps) => {
         <VideoComponent media={media} />
         <div className="gallery-text">
           <p>{media.title}</p>
-          <p className="likes">
-            {media.likes}{" "}
+          <p className="likes" onClick={incrementLikes}>
+            {likes}{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
