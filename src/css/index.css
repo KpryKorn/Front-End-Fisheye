@@ -177,6 +177,11 @@ h1 {
   height: 100%;
   width: 100%;
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.gallery-media-container {
+  height: 100%;
 }
 
 .gallery-text {
@@ -195,7 +200,7 @@ h1 {
 
 .play-btn {
   position: absolute;
-  z-index: 100;
+  z-index: 5;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -242,4 +247,89 @@ h1 {
   align-items: center;
   gap: 4px;
   cursor: pointer;
+}
+
+/* LIGHTBOX */
+
+.lightbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 1);
+  z-index: 10;
+}
+
+.lightbox img {
+  cursor: default !important;
+}
+
+.lightbox-close {
+  width: 42px;
+  height: 42px;
+  position: absolute;
+  left: 94%;
+  top: 6%;
+  z-index: 10;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.lightbox-media-container {
+  display: flex;
+  position: relative;
+}
+
+.lightbox-media-name-container {
+  width: 1253px;
+  height: 984px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox-media {
+  display: flex;
+}
+
+.lightbox-media-name {
+  position: absolute;
+  top: 96%;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 31px;
+  color: #911c1c;
+}
+
+.lightbox-media video,
+.lightbox-media img {
+  width: 1050px;
+  height: 900px;
+  border-radius: 5px;
+  object-fit: cover;
+  transition: opacity ease-in-out 0.6s;
+}
+
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+  width: 30px;
+  height: 48px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.lightbox-prev {
+  left: 3%;
+  top: 50%;
+}
+.lightbox-next {
+  right: 3%;
+  top: 50%;
 }
