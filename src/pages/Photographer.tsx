@@ -24,6 +24,17 @@ const Photographer = () => {
   const [likes, setLikes] = useState(0);
   const incrementLikes = () => setLikes(likes + 1);
 
+  const [sortMethod, setSortMethod] = useState("Popularité");
+  const sortedMedias = medias.sort((a, b) => {
+    if (sortMethod === "Popularité") {
+      return b.likes - a.likes;
+    } else if (sortMethod === "Date") {
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    } else if (sortMethod === "Titre") {
+      return a.title.localeCompare(b.title);
+    }
+  });
+
   return (
     <>
       <header>
@@ -50,23 +61,24 @@ const Photographer = () => {
       <section className="gallery">
         <div className="dropdown-container">
           <p>Trier par</p>
-          <Dropdown options={["Popularité", "Date", "Titre"]} />
+          <Dropdown
+            options={["Popularité", "Date", "Titre"]}
+            onOptionSelected={setSortMethod}
+          />
         </div>
         <ul className="gallery-container">
-          {medias
-            .sort((a, b) => b.likes - a.likes)
-            .map((media) => {
-              if (media.photographerId === photographerToRender?.id) {
-                return (
-                  <Factory
-                    likes={likes}
-                    incrementLikes={incrementLikes}
-                    key={media.id}
-                    media={media}
-                  />
-                );
-              }
-            })}
+          {sortedMedias.map((media) => {
+            if (media.photographerId === photographerToRender?.id) {
+              return (
+                <Factory
+                  likes={likes}
+                  incrementLikes={incrementLikes}
+                  key={media.id}
+                  media={media}
+                />
+              );
+            }
+          })}
         </ul>
       </section>
     </>

@@ -9,9 +9,21 @@ export const PrimaryBtn = () => {
   );
 };
 
-export const Dropdown = ({ options }: { options: string[] }) => {
+export const Dropdown = ({
+  options,
+  onOptionSelected,
+}: {
+  options: string[];
+  onOptionSelected: (option: string) => void;
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<string>("Popularité");
+
+  const handleOptionSelected = (option: string) => {
+    setSelected(option);
+    onOptionSelected(option);
+    setIsOpen(false);
+  };
 
   return (
     <div className="dropdown">
@@ -23,13 +35,7 @@ export const Dropdown = ({ options }: { options: string[] }) => {
           {options
             .filter((option) => option !== selected)
             .map((option, idx) => (
-              <div
-                key={idx}
-                onClick={() => {
-                  setSelected(option);
-                  setIsOpen(false);
-                }}
-              >
+              <div key={idx} onClick={() => handleOptionSelected(option)}>
                 {option}
               </div>
             ))}
