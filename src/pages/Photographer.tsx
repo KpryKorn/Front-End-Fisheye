@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { closeModal } from "../lib/utils";
 import data from "../data/photographers.json";
 import fisheyeLogo from "/images/logo.png";
 import {
@@ -9,6 +8,7 @@ import {
 import { PrimaryBtn, Dropdown } from "../components/buttons";
 import Factory from "../components/Factory";
 import { useState } from "react";
+import Modal from "../components/Modal";
 
 const Photographer = () => {
   const URLId = window.location.pathname.split("/")[1];
@@ -20,6 +20,7 @@ const Photographer = () => {
 
   const medias = data.media;
 
+  // gérer les likes via JS pur + DOM
   const [likes, setLikes] = useState(0);
   const incrementLikes = () => setLikes(likes + 1);
 
@@ -45,25 +46,7 @@ const Photographer = () => {
         photographer={photographerToRender!}
         medias={medias}
       />
-      <div id="contact_modal">
-        <div className="modal">
-          <header>
-            <h2>Contactez-moi</h2>
-            <img
-              src="/icons/close.svg"
-              onClick={closeModal}
-              alt="Icone pour fermer la modale"
-            />
-          </header>
-          <form>
-            <div>
-              <label>Prénom</label>
-              <input />
-            </div>
-            <button className="contact_button">Envoyer</button>
-          </form>
-        </div>
-      </div>
+      <Modal />
       <section className="gallery">
         <div className="dropdown-container">
           <p>Trier par</p>
@@ -76,7 +59,7 @@ const Photographer = () => {
               if (media.photographerId === photographerToRender?.id) {
                 return (
                   <Factory
-                    likes={media.likes}
+                    likes={likes}
                     incrementLikes={incrementLikes}
                     key={media.id}
                     media={media}

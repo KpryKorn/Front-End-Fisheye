@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { playVideo } from "../lib/utils";
 
 interface MediaProps {
@@ -42,10 +43,16 @@ const VideoComponent = ({ media }: MediaProps) => (
 );
 
 const Factory = ({ media, incrementLikes, likes }: MediaProps) => {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const openLightbox = () => setLightboxOpen(true);
+  const closeLightbox = () => setLightboxOpen(false);
+
   if (media.image) {
     return (
       <li key={media.id} className="gallery-item">
-        <ImageComponent media={media} />
+        <div className="gallery-media-container" onClick={openLightbox}>
+          <ImageComponent media={media} />
+        </div>
         <div className="gallery-text">
           <p>{media.title}</p>
           <p className="likes" onClick={incrementLikes}>
@@ -62,13 +69,71 @@ const Factory = ({ media, incrementLikes, likes }: MediaProps) => {
             </svg>
           </p>
         </div>
+        {lightboxOpen && (
+          <div className="lightbox">
+            <div className="lightbox-media-container">
+              <svg
+                width="42"
+                height="42"
+                viewBox="0 0 42 42"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                onClick={closeLightbox}
+                className="lightbox-close"
+              >
+                <path
+                  d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z"
+                  fill="#911C1C"
+                />
+              </svg>
+              <svg
+                width="30"
+                height="48"
+                viewBox="0 0 30 48"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="lightbox-prev"
+              >
+                <path
+                  d="M29.6399 42.36L11.3199 24L29.6399 5.64L23.9999 -2.46532e-07L-0.000107861 24L23.9999 48L29.6399 42.36Z"
+                  fill="#911C1C"
+                />
+              </svg>
+
+              <div className="lightbox-media-name-container">
+                <figure className="lightbox-media">
+                  <ImageComponent media={media} />
+                  <figcaption className="lightbox-media-name">
+                    {media.title}
+                  </figcaption>
+                </figure>
+              </div>
+              <svg
+                width="30"
+                height="48"
+                viewBox="0 0 30 48"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="lightbox-next"
+              >
+                <path
+                  xmlns="http://www.w3.org/2000/svg"
+                  d="M0.360108 5.64L18.6801 24L0.360107 42.36L6.00011 48L30.0001 24L6.00011 3.88195e-06L0.360108 5.64Z"
+                  fill="#911C1C"
+                />
+              </svg>
+            </div>
+          </div>
+        )}
       </li>
     );
   }
   if (media.video) {
     return (
       <li key={media.id} className="gallery-item">
-        <VideoComponent media={media} />
+        <div className="gallery-media-container" onClick={openLightbox}>
+          <VideoComponent media={media} />
+        </div>
         <div className="gallery-text">
           <p>{media.title}</p>
           <p className="likes" onClick={incrementLikes}>
@@ -85,6 +150,62 @@ const Factory = ({ media, incrementLikes, likes }: MediaProps) => {
             </svg>
           </p>
         </div>
+        {lightboxOpen && (
+          <div className="lightbox">
+            <div className="lightbox-media-container">
+              <svg
+                width="42"
+                height="42"
+                viewBox="0 0 42 42"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                onClick={closeLightbox}
+                className="lightbox-close"
+              >
+                <path
+                  d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z"
+                  fill="#911C1C"
+                />
+              </svg>
+              <svg
+                width="30"
+                height="48"
+                viewBox="0 0 30 48"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="lightbox-prev"
+              >
+                <path
+                  d="M29.6399 42.36L11.3199 24L29.6399 5.64L23.9999 -2.46532e-07L-0.000107861 24L23.9999 48L29.6399 42.36Z"
+                  fill="#911C1C"
+                />
+              </svg>
+
+              <div className="lightbox-media-name-container">
+                <figure className="lightbox-media">
+                  <VideoComponent media={media} />
+                  <figcaption className="lightbox-media-name">
+                    {media.title}
+                  </figcaption>
+                </figure>
+              </div>
+              <svg
+                width="30"
+                height="48"
+                viewBox="0 0 30 48"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="lightbox-next"
+              >
+                <path
+                  xmlns="http://www.w3.org/2000/svg"
+                  d="M0.360108 5.64L18.6801 24L0.360107 42.36L6.00011 48L30.0001 24L6.00011 3.88195e-06L0.360108 5.64Z"
+                  fill="#911C1C"
+                />
+              </svg>
+            </div>
+          </div>
+        )}
       </li>
     );
   }
