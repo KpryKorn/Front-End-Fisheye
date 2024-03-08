@@ -32,7 +32,7 @@ const Photographer = () => {
       return new Date(b.date).getTime() - new Date(a.date).getTime();
     } else if (sortMethod === "Titre") {
       return a.title.localeCompare(b.title);
-    }
+    } return 0;
   });
 
   return (
