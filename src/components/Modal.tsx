@@ -13,7 +13,17 @@ const Modal = ({photographerName}: {photographerName: string}) => {
           />
         </header>
         <h3 className="modal-name">{photographerName}</h3>
-        <form id="contact-form" onSubmit={() => console.log(FormData)}>
+        <form id="contact-form" onSubmit={
+          (e) => {
+            e.preventDefault();
+            const form = document.getElementById("contact-form") as HTMLFormElement;
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            console.log(data);
+            form.reset();
+            closeModal();
+          }
+        }>
           <div>
             <label htmlFor="first-name">Prénom</label>
             <input
