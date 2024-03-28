@@ -1,14 +1,12 @@
 import { Link } from "react-router-dom";
 import data from "../data/photographers.json";
 import fisheyeLogo from "/images/logo.png";
-import {
-  ProfileText,
-  DisplayTotalLikes,
-} from "../components/photographer-items";
+import { ProfileText } from "../components/photographer-items";
 import { PrimaryBtn, Dropdown } from "../components/buttons";
-import Factory from "../components/Factory";
+import { DisplayTotalLikes, Factory } from "../components/Factory";
 import { useState } from "react";
 import Modal from "../components/Modal";
+import { LikesContext } from "../components/LikesContext";
 
 const Photographer = () => {
   const URLId = window.location.pathname.split("/")[1];
@@ -28,11 +26,23 @@ const Photographer = () => {
       return new Date(b.date).getTime() - new Date(a.date).getTime();
     } else if (sortMethod === "Titre") {
       return a.title.localeCompare(b.title);
-    } return 0;
+    }
+    return 0;
   });
 
+  const photographerMedias = medias?.filter(
+    (media) => media.photographerId === photographerToRender!.id
+  );
+
+  const [totalLikes, setTotalLikes] = useState(
+    photographerMedias?.reduce((acc: number, media) => acc + media.likes, 0)
+  );
+  const incrementTotalLikes = () => {
+    setTotalLikes(totalLikes! + 1);
+  };
+
   return (
-    <>
+    <LikesContext.Provider value={{ totalLikes, incrementTotalLikes }}>
       <header>
         <Link to={"/"} title="Fisheye Home Page">
           <img src={fisheyeLogo} className="logo" alt="fisheye logo" />
@@ -48,10 +58,7 @@ const Photographer = () => {
           />
         </div>
       </main>
-      <DisplayTotalLikes
-        photographer={photographerToRender!}
-        medias={medias}
-      />
+      <DisplayTotalLikes photographer={photographerToRender!} medias={medias} />
       <Modal photographerName={photographerToRender!.name} />
       <section className="gallery">
         <div className="dropdown-container">
@@ -64,17 +71,12 @@ const Photographer = () => {
         <ul className="gallery-container">
           {sortedMedias.map((media) => {
             if (media.photographerId === photographerToRender?.id) {
-              return (
-                <Factory
-                  key={media.id}
-                  media={media}
-                />
-              );
+              return <Factory key={media.id} media={media} />;
             }
           })}
         </ul>
       </section>
-    </>
+    </LikesContext.Provider>
   );
 };
 

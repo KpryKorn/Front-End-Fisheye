@@ -1,5 +1,7 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { playVideo } from "../lib/utils";
+import { PhotographerProps } from "./photographer-items";
+import { LikesContext } from "./LikesContext";
 
 interface MediaProps {
   media: {
@@ -42,8 +44,10 @@ const VideoComponent = ({ media }: MediaProps) => (
   </div>
 );
 
-const Factory = ({ media }: MediaProps) => {
+export const Factory = ({ media }: MediaProps) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [likes, setLikes] = useState(media.likes);
+  const { incrementTotalLikes } = useContext(LikesContext);
   const openLightbox = () => setLightboxOpen(true);
   const closeLightbox = () => setLightboxOpen(false);
 
@@ -55,8 +59,14 @@ const Factory = ({ media }: MediaProps) => {
         </div>
         <div className="gallery-text">
           <p>{media.title}</p>
-          <p className="likes" onClick={() => media.likes + 1}>
-            {media.likes}{" "}
+          <p
+            className="likes"
+            onClick={() => {
+              setLikes(likes + 1);
+              incrementTotalLikes();
+            }}
+          >
+            {likes}{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -136,8 +146,14 @@ const Factory = ({ media }: MediaProps) => {
         </div>
         <div className="gallery-text">
           <p>{media.title}</p>
-          <p className="likes" onClick={() => media.likes + 1}>
-            {media.likes}{" "}
+          <p
+            className="likes"
+            onClick={() => {
+              setLikes(likes + 1);
+              incrementTotalLikes();
+            }}
+          >
+            {likes}{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -211,4 +227,25 @@ const Factory = ({ media }: MediaProps) => {
   }
 };
 
-export default Factory;
+export const DisplayTotalLikes = ({ photographer }: PhotographerProps) => {
+  const { totalLikes } = useContext(LikesContext);
+
+  return (
+    <article className="total-likes-container">
+      <p className="likes">
+        {totalLikes}{" "}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="total-likes-icon"
+        >
+          <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+        </svg>
+      </p>
+      <p>{`${photographer.price}€ /jour`}</p>
+    </article>
+  );
+};

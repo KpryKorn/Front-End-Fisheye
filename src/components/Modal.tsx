@@ -1,6 +1,6 @@
 import { closeModal } from "../lib/utils";
 
-const Modal = ({photographerName}: {photographerName: string}) => {
+const Modal = ({ photographerName }: { photographerName: string }) => {
   return (
     <div id="contact_modal">
       <div className="modal">
@@ -13,17 +13,20 @@ const Modal = ({photographerName}: {photographerName: string}) => {
           />
         </header>
         <h3 className="modal-name">{photographerName}</h3>
-        <form id="contact-form" onSubmit={
-          (e) => {
+        <form
+          id="contact-form"
+          onSubmit={(e) => {
             e.preventDefault();
-            const form = document.getElementById("contact-form") as HTMLFormElement;
+            const form = document.getElementById(
+              "contact-form"
+            ) as HTMLFormElement;
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
             console.log(data);
             form.reset();
             closeModal();
-          }
-        }>
+          }}
+        >
           <div>
             <label htmlFor="first-name">Prénom</label>
             <input
