@@ -134,20 +134,30 @@ h1 {
 .dropdown {
   position: relative;
   width: 200px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.dropdown-header {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.dropdown-options div:not(:first-child) {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .dropdown-header,
 .dropdown-options div {
   padding: 10px;
-  border: 1px solid #ccc;
   cursor: pointer;
+  background: var(--primary-color);
 }
 
 .dropdown-options {
   position: absolute;
   width: 100%;
-  background-color: #fff;
-  border: 1px solid #ccc;
   z-index: 1;
 }
 
@@ -273,7 +283,7 @@ h1 {
   height: 42px;
   position: absolute;
   left: 94%;
-  top: 6%;
+  top: 12%;
   z-index: 10;
   text-decoration: none;
   cursor: pointer;

@@ -56,8 +56,7 @@ export const ProfileText = ({ photographer }: PhotographerProps) => {
 
 export const DisplayTotalLikes = ({
   photographer,
-  medias,
-  likes,
+  medias
 }: PhotographerProps) => {
   const photographerMedias = medias?.filter(
     (media) => media.photographerId === photographer.id
@@ -71,7 +70,7 @@ export const DisplayTotalLikes = ({
   return (
     <article className="total-likes-container">
       <p className="likes">
-        {totalLikes! + likes!}{" "}
+        {totalLikes}{" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"

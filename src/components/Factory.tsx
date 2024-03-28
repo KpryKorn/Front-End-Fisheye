@@ -42,7 +42,7 @@ const VideoComponent = ({ media }: MediaProps) => (
   </div>
 );
 
-const Factory = ({ media, incrementLikes, likes }: MediaProps) => {
+const Factory = ({ media }: MediaProps) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const openLightbox = () => setLightboxOpen(true);
   const closeLightbox = () => setLightboxOpen(false);
@@ -55,8 +55,8 @@ const Factory = ({ media, incrementLikes, likes }: MediaProps) => {
         </div>
         <div className="gallery-text">
           <p>{media.title}</p>
-          <p className="likes" onClick={incrementLikes}>
-            {likes}{" "}
+          <p className="likes" onClick={() => media.likes + 1}>
+            {media.likes}{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -136,8 +136,8 @@ const Factory = ({ media, incrementLikes, likes }: MediaProps) => {
         </div>
         <div className="gallery-text">
           <p>{media.title}</p>
-          <p className="likes" onClick={incrementLikes}>
-            {likes}{" "}
+          <p className="likes" onClick={() => media.likes + 1}>
+            {media.likes}{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"

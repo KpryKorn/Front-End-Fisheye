@@ -20,10 +20,6 @@ const Photographer = () => {
 
   const medias = data.media;
 
-  // gérer les likes via JS pur + DOM
-  const [likes, setLikes] = useState(0);
-  const incrementLikes = () => setLikes(likes + 1);
-
   const [sortMethod, setSortMethod] = useState("Popularité");
   const sortedMedias = medias.sort((a, b) => {
     if (sortMethod === "Popularité") {
@@ -53,11 +49,10 @@ const Photographer = () => {
         </div>
       </main>
       <DisplayTotalLikes
-        likes={likes}
         photographer={photographerToRender!}
         medias={medias}
       />
-      <Modal />
+      <Modal photographerName={photographerToRender!.name} />
       <section className="gallery">
         <div className="dropdown-container">
           <p>Trier par</p>
@@ -71,8 +66,6 @@ const Photographer = () => {
             if (media.photographerId === photographerToRender?.id) {
               return (
                 <Factory
-                  likes={likes}
-                  incrementLikes={incrementLikes}
                   key={media.id}
                   media={media}
                 />

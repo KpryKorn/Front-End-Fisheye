@@ -1,6 +1,6 @@
 import { closeModal } from "../lib/utils";
 
-const Modal = () => {
+const Modal = ({photographerName}: {photographerName: string}) => {
   return (
     <div id="contact_modal">
       <div className="modal">
@@ -12,7 +12,8 @@ const Modal = () => {
             alt="Icone pour fermer la modale"
           />
         </header>
-        <form id="contact-form">
+        <h3 className="modal-name">{photographerName}</h3>
+        <form id="contact-form" onSubmit={() => console.log(FormData)}>
           <div>
             <label htmlFor="first-name">Prénom</label>
             <input

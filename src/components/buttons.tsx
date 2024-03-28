@@ -9,6 +9,7 @@ export const PrimaryBtn = () => {
   );
 };
 
+// gère le dropdown de sélection de tri de photos
 export const Dropdown = ({
   options,
   onOptionSelected,
@@ -19,6 +20,7 @@ export const Dropdown = ({
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<string>("Popularité");
 
+  // fonction appelée lorsqu'une option est sélectionnée
   const handleOptionSelected = (option: string) => {
     setSelected(option);
     onOptionSelected(option);

@@ -10,11 +10,11 @@ const Home = () => {
     <>
       <Header />
       <main id="main">
-        <div className="photographer_section">
+        <section className="photographer_section">
           {photographers.map((photographer, idx) => {
             return <Thumbnail key={idx} photographer={photographer} />;
           })}
-        </div>
+        </section>
       </main>
     </>
   );
