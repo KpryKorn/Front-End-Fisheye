@@ -16,6 +16,9 @@ interface MediaProps {
   };
   incrementLikes?: () => void;
   likes?: number;
+  changeMedia?: (direction: "next" | "prev") => void;
+  currentMedia?: any;
+  setCurrentMedia?: any;
 }
 
 const ImageComponent = ({ media }: MediaProps) => (
@@ -44,12 +47,20 @@ const VideoComponent = ({ media }: MediaProps) => (
   </div>
 );
 
-export const Factory = ({ media }: MediaProps) => {
+export const Factory = ({
+  media,
+  changeMedia,
+  currentMedia,
+  setCurrentMedia,
+}: MediaProps) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [likes, setLikes] = useState(media.likes);
   const [isLiked, setIsLiked] = useState(false);
   const { incrementTotalLikes, decrementTotalLikes } = useContext(LikesContext);
-  const openLightbox = () => setLightboxOpen(true);
+  const openLightbox = (media: MediaProps) => {
+    setCurrentMedia(media);
+    setLightboxOpen(true);
+  };
   const closeLightbox = () => setLightboxOpen(false);
 
   const handleLike = () => {
@@ -67,7 +78,10 @@ export const Factory = ({ media }: MediaProps) => {
   if (media.image) {
     return (
       <li key={media.id} className="gallery-item">
-        <div className="gallery-media-container" onClick={openLightbox}>
+        <div
+          className="gallery-media-container"
+          onClick={() => openLightbox(media)}
+        >
           <ImageComponent media={media} />
         </div>
         <div className="gallery-text">
@@ -110,6 +124,7 @@ export const Factory = ({ media }: MediaProps) => {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 className="lightbox-prev"
+                onClick={() => changeMedia!("prev")}
               >
                 <path
                   d="M29.6399 42.36L11.3199 24L29.6399 5.64L23.9999 -2.46532e-07L-0.000107861 24L23.9999 48L29.6399 42.36Z"
@@ -119,9 +134,9 @@ export const Factory = ({ media }: MediaProps) => {
 
               <div className="lightbox-media-name-container">
                 <figure className="lightbox-media">
-                  <ImageComponent media={media} />
+                  <ImageComponent media={currentMedia} />
                   <figcaption className="lightbox-media-name">
-                    {media.title}
+                    {currentMedia.title}
                   </figcaption>
                 </figure>
               </div>
@@ -132,6 +147,7 @@ export const Factory = ({ media }: MediaProps) => {
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 className="lightbox-next"
+                onClick={() => changeMedia!("next")}
               >
                 <path
                   xmlns="http://www.w3.org/2000/svg"
@@ -148,7 +164,10 @@ export const Factory = ({ media }: MediaProps) => {
   if (media.video) {
     return (
       <li key={media.id} className="gallery-item">
-        <div className="gallery-media-container" onClick={openLightbox}>
+        <div
+          className="gallery-media-container"
+          onClick={() => openLightbox(media)}
+        >
           <VideoComponent media={media} />
         </div>
         <div className="gallery-text">

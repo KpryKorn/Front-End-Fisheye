@@ -30,7 +30,7 @@ const Photographer = () => {
     return 0;
   });
 
-  const photographerMedias = medias?.filter(
+  const photographerMedias = sortedMedias?.filter(
     (media) => media.photographerId === photographerToRender!.id
   );
 
@@ -42,6 +42,16 @@ const Photographer = () => {
   };
   const decrementTotalLikes = () => {
     setTotalLikes(totalLikes! - 1);
+  };
+
+  const [currentMedia, setCurrentMedia] = useState(photographerMedias[0]);
+
+  const changeMedia = (direction: "next" | "prev") => {
+    const currentIndex = photographerMedias.findIndex(
+      (media) => media.id === currentMedia.id
+    );
+    const newIndex = direction === "next" ? currentIndex + 1 : currentIndex - 1;
+    setCurrentMedia(photographerMedias[newIndex % photographerMedias.length]);
   };
 
   return (
@@ -76,7 +86,15 @@ const Photographer = () => {
         <ul className="gallery-container">
           {sortedMedias.map((media) => {
             if (media.photographerId === photographerToRender?.id) {
-              return <Factory key={media.id} media={media} />;
+              return (
+                <Factory
+                  key={media.id}
+                  media={media}
+                  changeMedia={changeMedia}
+                  currentMedia={currentMedia}
+                  setCurrentMedia={setCurrentMedia}
+                />
+              );
             }
           })}
         </ul>
