@@ -47,9 +47,22 @@ const VideoComponent = ({ media }: MediaProps) => (
 export const Factory = ({ media }: MediaProps) => {
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [likes, setLikes] = useState(media.likes);
-  const { incrementTotalLikes } = useContext(LikesContext);
+  const [isLiked, setIsLiked] = useState(false);
+  const { incrementTotalLikes, decrementTotalLikes } = useContext(LikesContext);
   const openLightbox = () => setLightboxOpen(true);
   const closeLightbox = () => setLightboxOpen(false);
+
+  const handleLike = () => {
+    if (isLiked) {
+      setLikes(likes - 1);
+      setIsLiked(false);
+      decrementTotalLikes();
+    } else {
+      setLikes(likes + 1);
+      setIsLiked(true);
+      incrementTotalLikes();
+    }
+  };
 
   if (media.image) {
     return (
@@ -59,13 +72,7 @@ export const Factory = ({ media }: MediaProps) => {
         </div>
         <div className="gallery-text">
           <p>{media.title}</p>
-          <p
-            className="likes"
-            onClick={() => {
-              setLikes(likes + 1);
-              incrementTotalLikes();
-            }}
-          >
+          <p className="likes" onClick={handleLike}>
             {likes}{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -146,13 +153,7 @@ export const Factory = ({ media }: MediaProps) => {
         </div>
         <div className="gallery-text">
           <p>{media.title}</p>
-          <p
-            className="likes"
-            onClick={() => {
-              setLikes(likes + 1);
-              incrementTotalLikes();
-            }}
-          >
+          <p className="likes" onClick={handleLike}>
             {likes}{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"

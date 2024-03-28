@@ -40,9 +40,14 @@ const Photographer = () => {
   const incrementTotalLikes = () => {
     setTotalLikes(totalLikes! + 1);
   };
+  const decrementTotalLikes = () => {
+    setTotalLikes(totalLikes! - 1);
+  };
 
   return (
-    <LikesContext.Provider value={{ totalLikes, incrementTotalLikes }}>
+    <LikesContext.Provider
+      value={{ totalLikes, incrementTotalLikes, decrementTotalLikes }}
+    >
       <header>
         <Link to={"/"} title="Fisheye Home Page">
           <img src={fisheyeLogo} className="logo" alt="fisheye logo" />
