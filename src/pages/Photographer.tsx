@@ -59,46 +59,50 @@ const Photographer = () => {
       value={{ totalLikes, incrementTotalLikes, decrementTotalLikes }}
     >
       <header>
-        <Link to={"/"} title="Fisheye Home Page">
+        <Link to={"/"} aria-label="Fisheye Home Page">
           <img src={fisheyeLogo} className="logo" alt="fisheye logo" />
         </Link>
       </header>
-      <main id="main">
+      <main id="main" role="main">
         <div className="photograph-header">
           <ProfileText photographer={photographerToRender!} />
           <PrimaryBtn />
           <img
             src={`/images/Photographers_Id/${photographerToRender?.portrait}`}
             alt={photographerToRender?.name}
+            role="img"
+            aria-label={photographerToRender?.name}
           />
         </div>
       </main>
       <DisplayTotalLikes photographer={photographerToRender!} medias={medias} />
       <Modal photographerName={photographerToRender!.name} />
-      <section className="gallery">
+      <section className="gallery" role="region" aria-label="Galerie de photos">
         <div className="dropdown-container">
-          <p>Trier par</p>
+          <p id="sort-label">Trier par</p>
           <Dropdown
             options={["Popularité", "Date", "Titre"]}
             onOptionSelected={setSortMethod}
+            aria-labelledby="sort-label"
           />
         </div>
-        <ul className="gallery-container">
+        <ul className="gallery-container" role="list">
           {sortedMedias.map((media) => {
             if (media.photographerId === photographerToRender?.id) {
               return (
-                <Factory
-                  key={media.id}
-                  media={media}
-                  changeMedia={changeMedia}
-                  currentMedia={currentMedia}
-                  setCurrentMedia={setCurrentMedia}
-                />
+                <li role="listitem" key={media.id}>
+                  <Factory
+                    media={media}
+                    changeMedia={changeMedia}
+                    currentMedia={currentMedia}
+                    setCurrentMedia={setCurrentMedia}
+                  />
+                </li>
               );
             }
           })}
         </ul>
-      </section>
+      </section>{" "}
     </LikesContext.Provider>
   );
 };
