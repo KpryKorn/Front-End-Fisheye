@@ -25,26 +25,38 @@ export interface PhotographerProps {
 
 export const Thumbnail = ({ photographer }: PhotographerProps) => {
   return (
-    <article>
-      <Link to={`${photographer.id}`}>
+    <article role="article">
+      <Link
+        to={`${photographer.id}`}
+        aria-label={`Lien vers le profil de ${photographer.name}`}
+        role="link"
+        tabIndex={0}
+      >
         <img
           src={`/images/Photographers_Id/${photographer.portrait!}`}
           alt={photographer.name!}
+          role="img"
+          aria-label={photographer.name!}
+          tabIndex={0}
         />
-        <h2>{photographer.name}</h2>
+        <h2 tabIndex={0}>{photographer.name}</h2>
       </Link>
-      <p className="thumbnail-city">
+      <p className="thumbnail-city" role="contentinfo" tabIndex={0}>
         {photographer.city}, {photographer.country}
       </p>
-      <p className="thumbnail-tagline">{photographer.tagline}</p>
-      <p className="thumbnail-price">{photographer.price}€/jour</p>
+      <p className="thumbnail-tagline" role="contentinfo" tabIndex={0}>
+        {photographer.tagline}
+      </p>
+      <p className="thumbnail-price" role="contentinfo" tabIndex={0}>
+        {photographer.price}€/jour
+      </p>
     </article>
   );
 };
 
 export const ProfileText = ({ photographer }: PhotographerProps) => {
   return (
-    <div>
+    <div role="contentinfo">
       <h1 className="profile-name">{photographer.name}</h1>
       <p className="profile-city">
         {photographer.city}, {photographer.country}
