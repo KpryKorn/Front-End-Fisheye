@@ -57,11 +57,15 @@ export const Thumbnail = ({ photographer }: PhotographerProps) => {
 export const ProfileText = ({ photographer }: PhotographerProps) => {
   return (
     <div role="contentinfo">
-      <h1 className="profile-name">{photographer.name}</h1>
-      <p className="profile-city">
+      <h1 className="profile-name" tabIndex={0}>
+        {photographer.name}
+      </h1>
+      <p className="profile-city" tabIndex={0}>
         {photographer.city}, {photographer.country}
       </p>
-      <p className="profile-tagline">{photographer.tagline}</p>
+      <p className="profile-tagline" tabIndex={0}>
+        {photographer.tagline}
+      </p>
     </div>
   );
 };
