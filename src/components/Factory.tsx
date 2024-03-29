@@ -80,6 +80,7 @@ export const Factory = ({
       <li key={media.id} className="gallery-item">
         <div
           className="gallery-media-container"
+          // @ts-expect-error
           onClick={() => openLightbox(media)}
         >
           <ImageComponent media={media} />
@@ -166,6 +167,7 @@ export const Factory = ({
       <li key={media.id} className="gallery-item">
         <div
           className="gallery-media-container"
+          // @ts-expect-error
           onClick={() => openLightbox(media)}
         >
           <VideoComponent media={media} />
