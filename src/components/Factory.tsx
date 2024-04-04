@@ -80,14 +80,25 @@ export const Factory = ({
       <li key={media.id} className="gallery-item">
         <div
           className="gallery-media-container"
+          role="button"
+          aria-label="Ouvrir la lightbox"
           // @ts-expect-error
           onClick={() => openLightbox(media)}
+          tabIndex={0}
         >
           <ImageComponent media={media} />
         </div>
         <div className="gallery-text">
-          <p>{media.title}</p>
-          <p className="likes" onClick={handleLike}>
+          <p aria-label="Titre de la photo" tabIndex={0}>
+            {media.title}
+          </p>
+          <p
+            className="likes"
+            onClick={handleLike}
+            aria-label="Aimer cette image"
+            role="button"
+            tabIndex={0}
+          >
             {likes}{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -102,7 +113,7 @@ export const Factory = ({
           </p>
         </div>
         {lightboxOpen && (
-          <div className="lightbox">
+          <div className="lightbox" role="dialog" aria-modal="true">
             <div className="lightbox-media-container">
               <svg
                 width="42"
@@ -112,6 +123,8 @@ export const Factory = ({
                 xmlns="http://www.w3.org/2000/svg"
                 onClick={closeLightbox}
                 className="lightbox-close"
+                aria-label="Fermer la lightbox"
+                tabIndex={0}
               >
                 <path
                   d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z"
@@ -125,6 +138,8 @@ export const Factory = ({
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 className="lightbox-prev"
+                aria-label="Photo précédente"
+                tabIndex={0}
                 onClick={() => changeMedia!("prev")}
               >
                 <path
@@ -147,6 +162,8 @@ export const Factory = ({
                 viewBox="0 0 30 48"
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
+                aria-label="Photo suivante"
+                tabIndex={0}
                 className="lightbox-next"
                 onClick={() => changeMedia!("next")}
               >
@@ -167,14 +184,25 @@ export const Factory = ({
       <li key={media.id} className="gallery-item">
         <div
           className="gallery-media-container"
+          role="button"
+          aria-label="Ouvrir la lightbox"
+          tabIndex={0}
           // @ts-expect-error
           onClick={() => openLightbox(media)}
         >
           <VideoComponent media={media} />
         </div>
         <div className="gallery-text">
-          <p>{media.title}</p>
-          <p className="likes" onClick={handleLike}>
+          <p aria-label="Titre de la vidéo" tabIndex={0}>
+            {media.title}
+          </p>
+          <p
+            className="likes"
+            onClick={handleLike}
+            role="button"
+            aria-label="Aimer cette vidéo"
+            tabIndex={0}
+          >
             {likes}{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -189,7 +217,7 @@ export const Factory = ({
           </p>
         </div>
         {lightboxOpen && (
-          <div className="lightbox">
+          <div className="lightbox" role="dialog" aria-modal="true">
             <div className="lightbox-media-container">
               <svg
                 width="42"
@@ -199,6 +227,8 @@ export const Factory = ({
                 xmlns="http://www.w3.org/2000/svg"
                 onClick={closeLightbox}
                 className="lightbox-close"
+                aria-label="Fermer la lightbox"
+                tabIndex={0}
               >
                 <path
                   d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z"
@@ -212,6 +242,8 @@ export const Factory = ({
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 className="lightbox-prev"
+                aria-label="Naviguer vers la vidéo précédente"
+                tabIndex={0}
               >
                 <path
                   d="M29.6399 42.36L11.3199 24L29.6399 5.64L23.9999 -2.46532e-07L-0.000107861 24L23.9999 48L29.6399 42.36Z"
@@ -234,6 +266,8 @@ export const Factory = ({
                 fill="none"
                 xmlns="http://www.w3.org/2000/svg"
                 className="lightbox-next"
+                aria-label="Naviguer vers la vidéo suivante"
+                tabIndex={0}
               >
                 <path
                   xmlns="http://www.w3.org/2000/svg"
