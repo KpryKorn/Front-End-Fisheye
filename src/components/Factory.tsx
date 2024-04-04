@@ -57,11 +57,22 @@ export const Factory = ({
   const [likes, setLikes] = useState(media.likes);
   const [isLiked, setIsLiked] = useState(false);
   const { incrementTotalLikes, decrementTotalLikes } = useContext(LikesContext);
+
+  const handleKeyDown = (e: any) => {
+    if (e.key === "Escape") {
+      closeLightbox();
+    }
+  };
+
   const openLightbox = (media: MediaProps) => {
+    window.addEventListener("keydown", handleKeyDown);
     setCurrentMedia(media);
     setLightboxOpen(true);
   };
-  const closeLightbox = () => setLightboxOpen(false);
+  const closeLightbox = () => {
+    window.removeEventListener("keydown", handleKeyDown);
+    setLightboxOpen(false);
+  };
 
   const handleLike = () => {
     if (isLiked) {
@@ -82,7 +93,7 @@ export const Factory = ({
           className="gallery-media-container"
           role="button"
           aria-label="Ouvrir la lightbox"
-          // @ts-expect-error
+          // @ts-expect-error necessary for the onClick event
           onClick={() => openLightbox(media)}
           tabIndex={0}
         >
@@ -187,7 +198,7 @@ export const Factory = ({
           role="button"
           aria-label="Ouvrir la lightbox"
           tabIndex={0}
-          // @ts-expect-error
+          // @ts-expect-error necessary for the onClick event
           onClick={() => openLightbox(media)}
         >
           <VideoComponent media={media} />
