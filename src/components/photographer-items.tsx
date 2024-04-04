@@ -41,13 +41,25 @@ export const Thumbnail = ({ photographer }: PhotographerProps) => {
         />
         <h2 tabIndex={0}>{photographer.name}</h2>
       </Link>
-      <p className="thumbnail-city" role="contentinfo" tabIndex={0}>
+      <p
+        className="thumbnail-city"
+        aria-label={`${photographer.city}, ${photographer.country}`}
+        tabIndex={0}
+      >
         {photographer.city}, {photographer.country}
       </p>
-      <p className="thumbnail-tagline" role="contentinfo" tabIndex={0}>
+      <p
+        className="thumbnail-tagline"
+        aria-label={`${photographer.tagline}`}
+        tabIndex={0}
+      >
         {photographer.tagline}
       </p>
-      <p className="thumbnail-price" role="contentinfo" tabIndex={0}>
+      <p
+        className="thumbnail-price"
+        aria-label={`${photographer.price}`}
+        tabIndex={0}
+      >
         {photographer.price}€/jour
       </p>
     </article>
