@@ -161,7 +161,11 @@ export const Factory = ({
 
               <div className="lightbox-media-name-container">
                 <figure className="lightbox-media">
-                  <ImageComponent media={currentMedia} />
+                  {currentMedia.image ? (
+                    <ImageComponent media={currentMedia} />
+                  ) : (
+                    <VideoComponent media={currentMedia} />
+                  )}
                   <figcaption className="lightbox-media-name">
                     {currentMedia.title}
                   </figcaption>

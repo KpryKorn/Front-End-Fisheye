@@ -50,10 +50,14 @@ const Photographer = () => {
     const currentIndex = photographerMedias.findIndex(
       (media) => media.id === currentMedia.id
     );
-    const newIndex = direction === "next" ? currentIndex + 1 : currentIndex - 1;
-    setCurrentMedia(photographerMedias[newIndex % photographerMedias.length]);
+    let newIndex = direction === "next" ? currentIndex + 1 : currentIndex - 1;
+    if (newIndex < 0) {
+      newIndex = photographerMedias.length - 1;
+    } else if (newIndex === photographerMedias.length) {
+      newIndex = 0;
+    }
+    setCurrentMedia(photographerMedias[newIndex]);
   };
-
   return (
     <LikesContext.Provider
       value={{ totalLikes, incrementTotalLikes, decrementTotalLikes }}
